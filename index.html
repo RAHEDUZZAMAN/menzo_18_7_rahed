@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MENZO – Men's Fashion Store | Upgrade Your Style</title>
+  <meta name="description" content="MENZO – Premium Men's Fashion Store. Shop Shirts, T-Shirts, Polo Shirts, Formal & Casual Pants, Trousers, Joggers, Hoodies, and Jackets in Bangladesh." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#0A0A0A',
+              charcoal: '#171717',
+              white: '#FFFFFF',
+              gray: '#F4F4F5',
+              accent: '#EA580C',
+              accentHover: '#C2410C',
+              gold: '#D97706',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --primary: #0A0A0A;
+      --secondary: #FFFFFF;
+      --accent: #EA580C;
+      --gold: #D97706;
+      --bg-light: #F4F4F5;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--primary);
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c4c4c8;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #EA580C;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-up {
+      animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .product-card:hover .product-img-main {
+      transform: scale(1.06);
+    }
+
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-orange-600 selection:text-white">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-brand-black text-white text-xs sm:text-sm py-2 px-4 text-center border-b border-neutral-800">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+      <span class="font-medium tracking-wide">
+        <span class="text-amber-400 font-semibold">FLASH OFFER:</span> Get Extra <span class="text-orange-400 font-bold">15% OFF</span> with code <code class="bg-neutral-800 px-1.5 py-0.5 rounded text-amber-300 font-mono">MENZO15</code>
+      </span>
+      <span class="hidden sm:inline text-neutral-600">|</span>
+      <span class="text-neutral-300">Cash on Delivery Across Bangladesh</span>
+    </div>
+  </div>
+
+  <!-- Main Sticky Navigation -->
+  <header class="glass-nav sticky top-0 z-40 border-b border-neutral-200/80 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20 gap-4">
+
+        <!-- Mobile Menu Button & Logo -->
+        <div class="flex items-center gap-3">
+          <button id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Open menu"
+            class="lg:hidden p-2 rounded-xl text-neutral-800 hover:bg-neutral-100 transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+
+          <a href="#home" onclick="navigateTo('home'); return false;" class="flex items-center gap-2.5 group">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-black text-white flex items-center justify-center font-serif font-bold text-xl tracking-tight group-hover:bg-orange-600 transition-colors">
+              M
+            </div>
+            <div class="leading-none">
+              <span class="block font-extrabold text-xl sm:text-2xl tracking-widest text-brand-black">MENZO</span>
+              <span class="block text-[10px] tracking-[0.22em] text-neutral-500 uppercase font-semibold">Men's Fashion Store</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-neutral-700">
+          <a href="#home" onclick="navigateTo('home'); return false;" data-nav="home" class="nav-link hover:text-orange-600 transition py-2">Home</a>
+          <a href="#shop" onclick="navigateTo('shop', { category: 'All' }); return false;" data-nav="shop" class="nav-link hover:text-orange-600 transition py-2">Shop</a>
+
+          <div class="relative group">
+            <button onclick="navigateTo('shop', { category: 'All' })" class="flex items-center gap-1 hover:text-orange-600 transition py-2">
+              <span>Categories</span>
+              <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div class="w-64 bg-white rounded-2xl shadow-xl border border-neutral-100 p-3 grid grid-cols-1 gap-1" id="desktopCatDropdown"></div>
+            </div>
+          </div>
+
+          <a href="#new-arrivals" onclick="navigateTo('shop', { filterFlag: 'newArrival' }); return false;" data-nav="new" class="nav-link hover:text-orange-600 transition py-2">New Arrivals</a>
+          <a href="#about" onclick="navigateTo('about'); return false;" data-nav="about" class="nav-link hover:text-orange-600 transition py-2">About Us</a>
+          <a href="#contact" onclick="navigateTo('contact'); return false;" data-nav="contact" class="nav-link hover:text-orange-600 transition py-2">Contact</a>
+        </nav>
+
+        <!-- Search Bar + Action Icons -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="relative hidden md:block w-56 xl:w-72">
+            <input id="desktopSearchInput" type="text" placeholder="Search shirts, hoodies, pants..."
+              oninput="handleSearchInput(this.value, 'desktopSearchResults')"
+              onkeydown="if(event.key==='Enter'){ submitSearch(this.value); }"
+              class="w-full bg-neutral-100 border border-transparent focus:border-orange-500 focus:bg-white rounded-full py-2 pl-10 pr-4 text-sm outline-none transition" />
+            <svg class="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <div id="desktopSearchResults" class="hidden absolute left-0 right-0 top-full mt-2 bg-white rounded-2xl shadow-2xl border border-neutral-100 overflow-hidden z-50 max-h-96 overflow-y-auto"></div>
+          </div>
+
+          <button onclick="toggleMobileSearch()" aria-label="Search" class="md:hidden p-2 rounded-full hover:bg-neutral-100 text-neutral-800 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </button>
+
+          <button onclick="openWishlistDrawer()" aria-label="Wishlist" class="relative p-2.5 rounded-full hover:bg-neutral-100 text-neutral-800 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+            <span id="wishlistBadge" class="hidden absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-amber-500 text-white text-[10px] font-bold flex items-center justify-center">0</span>
+          </button>
+
+          <button onclick="openCartDrawer()" aria-label="Shopping Cart" class="relative flex items-center gap-2 bg-brand-black hover:bg-orange-600 text-white px-3.5 py-2 rounded-full transition-colors text-sm font-semibold">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            <span class="hidden sm:inline">Cart</span>
+            <span id="cartBadge" class="min-w-[20px] h-[20px] px-1 rounded-full bg-orange-500 text-white text-[11px] font-bold flex items-center justify-center">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search Bar -->
+      <div id="mobileSearchWrap" class="hidden pb-3 md:hidden relative">
+        <input id="mobileSearchInput" type="text" placeholder="Search MENZO collection..."
+          oninput="handleSearchInput(this.value, 'mobileSearchResults')"
+          onkeydown="if(event.key==='Enter'){ submitSearch(this.value); toggleMobileSearch(false); }"
+          class="w-full bg-neutral-100 border border-neutral-200 focus:border-orange-500 focus:bg-white rounded-xl py-2.5 pl-10 pr-4 text-sm outline-none" />
+        <svg class="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <div id="mobileSearchResults" class="hidden absolute left-0 right-0 top-full mt-1 bg-white rounded-xl shadow-2xl border border-neutral-100 overflow-hidden z-50 max-h-80 overflow-y-auto"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Slide-Out Menu -->
+  <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/60 z-50 hidden backdrop-blur-sm" onclick="toggleMobileMenu(false)"></div>
+  <aside id="mobileMenuDrawer" class="fixed top-0 left-0 bottom-0 w-80 max-w-[85vw] bg-white z-50 transform -translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+    <div class="p-5 border-b border-neutral-100 flex items-center justify-between bg-brand-black text-white">
+      <div>
+        <span class="font-extrabold text-xl tracking-widest">MENZO</span>
+        <span class="block text-[10px] tracking-widest text-neutral-400 uppercase">Men's Fashion Store</span>
+      </div>
+      <button onclick="toggleMobileMenu(false)" aria-label="Close menu" class="p-2 rounded-lg hover:bg-neutral-800">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <div class="p-5 overflow-y-auto flex-1 space-y-6">
+      <div class="space-y-1">
+        <a href="#home" onclick="navigateTo('home'); toggleMobileMenu(false); return false;" class="block px-3 py-2.5 rounded-xl font-semibold hover:bg-neutral-100">Home</a>
+        <a href="#shop" onclick="navigateTo('shop', { category: 'All' }); toggleMobileMenu(false); return false;" class="block px-3 py-2.5 rounded-xl font-semibold hover:bg-neutral-100">Shop All</a>
+        <a href="#new-arrivals" onclick="navigateTo('shop', { filterFlag: 'newArrival' }); toggleMobileMenu(false); return false;" class="block px-3 py-2.5 rounded-xl font-semibold text-orange-600 hover:bg-orange-50">New Arrivals</a>
+        <a href="#about" onclick="navigateTo('about'); toggleMobileMenu(false); return false;" class="block px-3 py-2.5 rounded-xl font-semibold hover:bg-neutral-100">About Us</a>
+        <a href="#contact" onclick="navigateTo('contact'); toggleMobileMenu(false); return false;" class="block px-3 py-2.5 rounded-xl font-semibold hover:bg-neutral-100">Contact</a>
+      </div>
+      <div>
+        <p class="px-3 text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">Shop Categories</p>
+        <div id="mobileCatList" class="space-y-1"></div>
+      </div>
+    </div>
+    <div class="p-4 border-t border-neutral-100 bg-neutral-50 text-xs text-neutral-500 text-center">
+      Need help? Call +880 1711-000999
+    </div>
+  </aside>
+
+  <!-- Main Dynamic Content -->
+  <main id="appRoot" class="min-h-[75vh]"></main>
+
+  <!-- Footer -->
+  <footer class="bg-brand-black text-neutral-300 mt-16 border-t border-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-xl bg-orange-600 text-white flex items-center justify-center font-serif font-bold text-xl">M</div>
+            <div>
+              <span class="block font-extrabold text-2xl tracking-widest text-white">MENZO</span>
+              <span class="block text-[10px] tracking-[0.2em] text-neutral-400 uppercase">Men's Fashion Store</span>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-400 leading-relaxed">
+            Elevating modern menswear in Bangladesh with tailored precision, breathable fabrics, and everyday comfort.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-white font-bold uppercase tracking-wider text-xs mb-4">Quick Links</h3>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#home" onclick="navigateTo('home'); return false;" class="hover:text-orange-500 transition">Home</a></li>
+            <li><a href="#shop" onclick="navigateTo('shop', { category: 'All' }); return false;" class="hover:text-orange-500 transition">Shop All</a></li>
+            <li><a href="#new" onclick="navigateTo('shop', { filterFlag: 'newArrival' }); return false;" class="hover:text-orange-500 transition">New Arrivals</a></li>
+            <li><a href="#about" onclick="navigateTo('about'); return false;" class="hover:text-orange-500 transition">About MENZO</a></li>
+            <li><a href="#contact" onclick="navigateTo('contact'); return false;" class="hover:text-orange-500 transition">Contact Us</a></li>
+            <li><a href="#checkout" onclick="navigateTo('checkout'); return false;" class="hover:text-orange-500 transition">Checkout</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-white font-bold uppercase tracking-wider text-xs mb-4">Collections</h3>
+          <ul class="grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm" id="footerCategoryLinks"></ul>
+        </div>
+
+        <div class="space-y-3 text-sm">
+          <h3 class="text-white font-bold uppercase tracking-wider text-xs mb-4">Flagship & Support</h3>
+          <p class="text-neutral-400">Road 11, Banani, Dhaka 1213, Bangladesh</p>
+          <p class="text-neutral-400">Phone: +880 1711-000999</p>
+          <p class="text-neutral-400">Email: care@menzo.com.bd</p>
+          <div class="pt-3 flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded bg-neutral-900 border border-neutral-800 text-[11px] font-semibold text-amber-400">Cash on Delivery</span>
+            <span class="px-2.5 py-1 rounded bg-neutral-900 border border-neutral-800 text-[11px] font-semibold text-neutral-300">7-Day Easy Return</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-6 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+        <p>© <span id="yearSpan"></span> MENZO – Men's Fashion Store. All rights reserved.</p>
+        <p>Crafted for Modern Gentlemen • Currency: BDT (৳)</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div id="cartOverlay" class="fixed inset-0 bg-black/60 z-50 hidden backdrop-blur-sm" onclick="closeCartDrawer()"></div>
+  <aside id="cartDrawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white z-50 transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+    <div class="p-5 border-b border-neutral-200 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <h2 class="font-bold text-lg">Your Shopping Bag</h2>
+        <span id="cartDrawerCount" class="px-2 py-0.5 rounded-full bg-orange-100 text-orange-700 text-xs font-bold">0</span>
+      </div>
+      <button onclick="closeCartDrawer()" aria-label="Close Cart" class="p-2 rounded-full hover:bg-neutral-100">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="cartDrawerBody" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
+    <div id="cartDrawerFooter" class="p-5 border-t border-neutral-200 bg-neutral-50 space-y-4"></div>
+  </aside>
+
+  <!-- Wishlist Drawer -->
+  <div id="wishlistOverlay" class="fixed inset-0 bg-black/60 z-50 hidden backdrop-blur-sm" onclick="closeWishlistDrawer()"></div>
+  <aside id="wishlistDrawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white z-50 transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+    <div class="p-5 border-b border-neutral-200 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <h2 class="font-bold text-lg">Saved Wishlist</h2>
+        <span id="wishlistDrawerCount" class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">0</span>
+      </div>
+      <button onclick="closeWishlistDrawer()" aria-label="Close Wishlist" class="p-2 rounded-full hover:bg-neutral-100">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="wishlistDrawerBody" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
+  </aside>
+
+  <!-- Quick View Modal -->
+  <div id="quickViewModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onclick="if(event.target===this) closeQuickView()">
+    <div id="quickViewContent" class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl animate-fade-up max-h-[90vh] overflow-y-auto"></div>
+  </div>
+
+  <!-- Size Guide Modal -->
+  <div id="sizeGuideModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onclick="if(event.target===this) closeSizeGuide()">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl animate-fade-up">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-bold text-xl">MENZO Size Guide (Inches)</h3>
+        <button onclick="closeSizeGuide()" class="p-2 rounded-full hover:bg-neutral-100">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left border-collapse">
+          <thead>
+            <tr class="bg-neutral-100 text-neutral-700">
+              <th class="p-3 rounded-tl-xl">Size</th>
+              <th class="p-3">Chest (in)</th>
+              <th class="p-3">Waist (in)</th>
+              <th class="p-3 rounded-tr-xl">Length (in)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-neutral-100">
+            <tr><td class="p-3 font-bold">S</td><td class="p-3">36 – 38</td><td class="p-3">29 – 30</td><td class="p-3">27.5</td></tr>
+            <tr><td class="p-3 font-bold">M</td><td class="p-3">38 – 40</td><td class="p-3">31 – 32</td><td class="p-3">28.5</td></tr>
+            <tr><td class="p-3 font-bold">L</td><td class="p-3">40 – 42</td><td class="p-3">33 – 34</td><td class="p-3">29.5</td></tr>
+            <tr><td class="p-3 font-bold">XL</td><td class="p-3">42 – 44</td><td class="p-3">35 – 36</td><td class="p-3">30.5</td></tr>
+            <tr><td class="p-3 font-bold">XXL</td><td class="p-3">44 – 46</td><td class="p-3">37 – 38</td><td class="p-3">31.5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-neutral-500 mt-4">All MENZO garments feature tailored modern-slim proportions. Size up if you prefer a relaxed streetwear fit.</p>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-[60] flex flex-col gap-2.5 max-w-xs w-full pointer-events-none"></div>
+
+  <script>
+    // ==========================================
+    // 1. CATALOG DATA & CATEGORIES
+    // ==========================================
+    const CATEGORIES = [
+      {
+        name: "Men's Shirts",
+        slug: "mens-shirts",
+        tagline: "Crisp Oxford & Tailored Linen",
+        image: "https://images.unsplash.com/photo-1603252109612-24fa03d145c8?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        name: "T-Shirts",
+        slug: "t-shirts",
+        tagline: "Heavyweight Combed Cotton",
+        image: "https://images.unsplash.com/photo-1532202193792-e95ef22f1bce?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        name: "Polo Shirts",
+        slug: "polo-shirts",
+        tagline: "Breathable Pique Knit",
+        image: "https://images.unsplash.com/photo-1767164521355-855b4502abc1?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        name: "Formal Pants",
+        slug: "formal-pants",
+        tagline: "Sharp Executive Tailoring",
+        image: "https://images.unsplash.com/photo-1722938203503-728e4a0ddf84?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        name: "Casual Pants",
+        slug: "casual-pants",
+        tagline: "Stretch Chinos & Everyday Fits",
+        image: "https://images.unsplash.com/photo-1758267928064-f159a683385d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        name: "Trousers",
+        slug: "trousers",
+        tagline: "Pleated & Relaxed Silhouettes",
+        image: "https://images.unsplash.com/photo-1690221917474-969789923f34?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        name: "Joggers",
+        slug: "joggers",
+        tagline: "Urban Comfort & Athleisure",
+        image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        name: "Hoodies",
+        slug: "hoodies",
+        tagline: "400 GSM French Terry Fleece",
+        image: "https://images.unsplash.com/photo-1692776100567-31aa5bc1e388?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        name: "Jackets",
+        slug: "jackets",
+        tagline: "Leather, Denim & Winter Outerwear",
+        image: "https://images.unsplash.com/photo-1600267187858-9dafb868f490?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    const ALL_SIZES = ["S", "M", "L", "XL", "XXL"];
+
+    const PRODUCTS = [
+      {
+        id: 1,
+        name: "Royal Oxford Tailored Dress Shirt",
+        category: "Men's Shirts",
+        originalPrice: 2450,
+        price: 1790,
+        rating: 4.9,
+        reviews: 128,
+        stock: 18,
+        bestSeller: true,
+        newArrival: false,
+        featuredOffer: true,
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Crisp White", hex: "#F8FAFC" },
+          { name: "Jet Black", hex: "#111827" },
+          { name: "Sky Blue", hex: "#38BDF8" }
+        ],
+        images: [
+          "https://images.unsplash.com/photo-1603252109612-24fa03d145c8?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1629649536441-71932e5f2f55?auto=format&fit=crop&w=900&q=80"
+        ],
+        fabric: "100% Egyptian Long-Staple Cotton",
+        description: "Crafted from breathable 2-ply Royal Oxford cotton with a structured collar. Ideal for formal meetings and smart-casual wear."
+      },
+      {
+        id: 2,
+        name: "Midnight Satin-Weave Casual Shirt",
+        category: "Men's Shirts",
+        originalPrice: 2200,
+        price: 1650,
+        rating: 4.8,
+        reviews: 84,
+        stock: 14,
+        bestSeller: false,
+        newArrival: true,
+        featuredOffer: false,
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Obsidian Black", hex: "#0A0A0A" },
+          { name: "Charcoal", hex: "#374151" }
+        ],
+        images: [
+          "https://images.unsplash.com/photo-1622462716356-9517ec3031ce?auto=format&fit=crop&w=900&q=80",
+          "https://images.unsplash.com/photo-1591938508460-ccd3b076ddd7?auto=format&fit=crop&w=900&q=80"
+        ],
+        fabric: "97% Combed Cotton, 3% Elastane",
+        description: "Smooth matte finish with subtle stretch for all-day comfort and a clean modern fit."
+      },
+      {
+        id: 3,
+        name: "Signature 240 GSM Heavyweight Tee",
+        category: "T-Shirts",
+        originalPrice: 1150,
+        price: 790,
+        rating: 4.9,
+        reviews: 245,
+        stock: 32,
+        bestSeller: true,
+        newArrival: false,
+        featuredOffer: true,
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Jet Black", hex: "#0A0A0A" },
+          { name: "Pure White", hex: "#FFFFFF" },
+          { name: "Rust Orange", hex: "#EA580C" }
+        ],
+        images: [
+          "https://images.unsplash.com/photo-1532202193792-e95ef22f1bce?auto=format&fit=crop&w=900&q=80"
+        ],
+        fabric: "100% Heavyweight Combed Cotton (240 GSM)",
+        description: "Structured crewneck tee that holds its shape after repeated washes while feeling soft on skin."
+      },
+      {
+        id: 4,
+        name: "Pique Knit Heritage Polo Shirt",
+        category: "Polo Shirts",
+        originalPrice: 1650,
+        price: 1250,
+        rating: 4.7,
+        reviews: 96,
+        stock: 20,
+        bestSeller: true,
+        newArrival: true,
+        featuredOffer: false,
+        sizes: ["S", "M", "L", "XL"],
+        colors: [
+          { name: "Charcoal", hex: "#27272A" },
+          { name: "Amber Gold", hex: "#D97706" }
+        ],
+        images: [
+          "https://images.unsplash.com/photo-1767164521355-855b4502abc1?auto=format&fit=crop&w=900&q=80"
+        ],
+        fabric: "100% Breathable Cotton Pique",
+        description: "Classic two-button placket polo with ribbed cuffs for smart weekend and office-casual styling."
+      },
+      {
+        id: 5,
+        name: "Executive Slim-Fit Formal Pant",
+        category: "Formal Pants",
+        originalPrice: 2800,
+        price: 2150,
+        rating: 4.8,
+        reviews: 73,
+        stock: 15,
+        bestSeller: false,
+        newArrival: true,
+        featuredOffer: true,
+        sizes: ["M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Charcoal Slate", hex: "#334155" },
+          { name: "Deep Black", hex: "#0F172A" }
+        ],
+        images: [
+          "https://images.unsplash.com/photo-1722938203503-728e4a0ddf84?auto=format&fit=crop&w=900&q=80"
+        ],
+        fabric: "Poly-Viscose Stretch Blend",
+        description: "Wrinkle-resistant tailored formal trousers designed for long workdays and formal events."
+      },
+      {
+        id: 6,
+        name: "Everyday Stretch Casual Chino",
+        category: "Casual Pants",
+        originalPrice: 2350,
+        price: 1690,
+        rating: 4.8,
+        reviews: 112,
+        stock: 22,
+        bestSeller: true,
+        newArrival: false,
+        featuredOffer: false,
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Sand Khaki", hex: "#D6C7B2" },
+          { name: "Olive Ash", hex: "#57534E" }
+        ],
+        images: [
+          "https://images.unsplash.com/photo-1758267928064-f159a683385d?auto=format&fit=crop&w=900&q=80"
+        ],
+        fabric: "98% Cotton Twill, 2% Spandex",
+        description: "Versatile everyday chino with clean welt pockets and comfortable flex for daily movement."
+      },
+      {
+        id: 7,
+        name: "Pleated Relaxed Tailored Trouser",
+        category: "Trousers",
+        originalPrice: 2600,
+        price: 1990,
+        rating: 4.7,
+        reviews: 58,
+        stock: 11,
+        bestSeller: false,
+        newArrival: true,
+        featuredOffer: false,
+        sizes: ["S", "M", "L", "XL"],
+        colors: [
+          { name: "Stone Gray", hex: "#71717A" },
+          { name: "Black", hex: "#18181B" }
+        ],
+        images: [
+          "https://images.unsplash.com/photo-1690221917474-969789923f34?auto=format&fit=crop&w=900&q=80"
+        ],
+        fabric: "Midweight Twill Weave",
+        description: "Single front pleats with a clean taper toward the ankle for contemporary menswear styling."
+      },
+      {
+        id: 8,
+        name: "Metro Tapered Tech Jogger",
+        category: "Joggers",
+        originalPrice: 1950,
+        price: 1450,
+        rating: 4.9,
+        reviews: 164,
+        stock: 27,
+        bestSeller: true,
+        newArrival: false,
+        featuredOffer: true,
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Carbon Black", hex: "#171717" },
+          { name: "Heather Gray", hex: "#9CA3AF" }
+        ],
+        images: [
+          "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=900&q=80"
+        ],
+        fabric: "Cotton-Poly French Terry with Zip Pockets",
+        description: "Tapered joggers with zippered side pockets and ribbed cuffs for travel, gym, or lounging."
+      },
+      {
+        id: 9,
+        name: "400 GSM Essential Pullover Hoodie",
+        category: "Hoodies",
+        originalPrice: 2950,
+        price: 2190,
+        rating: 4.9,
+        reviews: 189,
+        stock: 19,
+        bestSeller: true,
+        newArrival: true,
+        featuredOffer: true,
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Graphite Black", hex: "#18181B" },
+          { name: "Burnt Orange", hex: "#EA580C" }
+        ],
+        images: [
+          "https://images.unsplash.com/photo-1692776100567-31aa5bc1e388?auto=format&fit=crop&w=900&q=80"
+        ],
+        fabric: "400 GSM Heavy French Terry",
+        description: "Cozy double-lined hood and kangaroo pocket built for cool evenings and layered street outfits."
+      },
+      {
+        id: 10,
+        name: "Urban Moto & Bomber Jacket",
+        category: "Jackets",
+        originalPrice: 4500,
+        price: 3390,
+        rating: 4.8,
+        reviews: 77,
+        stock: 9,
+        bestSeller: false,
+        newArrival: true,
+        featuredOffer: true,
+        sizes: ["M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Matte Black", hex: "#0A0A0A" },
+          { name: "Espresso Brown", hex: "#451A03" }
+        ],
+        images: [
+          "https://images.unsplash.com/photo-1600267187858-9dafb868f490?auto=format&fit=crop&w=900&q=80"
+        ],
+        fabric: "Structured Outerwear Shell + Quilted Lining",
+        description: "Statement outerwear jacket with metal hardware and clean rib trim for crisp weather."
+      }
+    ];
+
+    // ==========================================
+    // 2. STATE & PERSISTENCE
+    // ==========================================
+    const STORAGE_KEYS = {
+      CART: "menzo_cart_v1",
+      WISHLIST: "menzo_wishlist_v1",
+      PROMO: "menzo_promo_v1"
+    };
+
+    let state = {
+      view: "home",
+      cart: JSON.parse(localStorage.getItem(STORAGE_KEYS.CART) || "[]"),
+      wishlist: JSON.parse(localStorage.getItem(STORAGE_KEYS.WISHLIST) || "[]"),
+      promoCode: localStorage.getItem(STORAGE_KEYS.PROMO) || "",
+      filters: {
+        category: "All",
+        maxPrice: 5000,
+        size: "All",
+        color: "All",
+        search: "",
+        sort: "featured",
+        filterFlag: null
+      }
+    };
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(state.cart));
+      localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(state.wishlist));
+      localStorage.setItem(STORAGE_KEYS.PROMO, state.promoCode);
+      updateBadges();
+    }
+
+    function formatBDT(amount) {
+      return "৳" + Number(amount || 0).toLocaleString("en-BD");
+    }
+
+    function getDiscountPercent(orig, sale) {
+      if (!orig || orig <= sale) return 0;
+      return Math.round(((orig - sale) / orig) * 100);
+    }
+
+    function showToast(message, type = "success") {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      const bg = type === "error" ? "bg-red-600" : type === "info" ? "bg-neutral-900" : "bg-brand-black";
+      toast.className = `${bg} text-white px-4 py-3 rounded-2xl shadow-xl text-sm font-medium flex items-center justify-between gap-3 animate-fade-up pointer-events-auto border border-white/10`;
+      toast.innerHTML = `<span>${message}</span><button onclick="this.parentElement.remove()" class="text-white/70 hover:text-white text-xs font-bold">✕</button>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transform = "translateY(8px)";
+        toast.style.transition = "all 0.25s ease";
+        setTimeout(() => toast.remove(), 260);
+      }, 2800);
+    }
+
+    // ==========================================
+    // 3. NAVIGATION & UI HELPERS
+    // ==========================================
+    function navigateTo(viewName, filterOverrides = {}) {
+      state.view = viewName;
+      state.filters = {
+        category: "All",
+        maxPrice: 5000,
+        size: "All",
+        color: "All",
+        search: "",
+        sort: "featured",
+        filterFlag: null,
+        ...filterOverrides
+      };
+      renderApp();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toggleMobileMenu(force) {
+      const overlay = document.getElementById("mobileMenuOverlay");
+      const drawer = document.getElementById("mobileMenuDrawer");
+      const isOpen = !drawer.classList.contains("-translate-x-full");
+      const nextOpen = typeof force === "boolean" ? force : !isOpen;
+      if (nextOpen) {
+        overlay.classList.remove("hidden");
+        requestAnimationFrame(() => drawer.classList.remove("-translate-x-full"));
+      } else {
+        drawer.classList.add("-translate-x-full");
+        setTimeout(() => overlay.classList.add("hidden"), 280);
+      }
+    }
+
+    function toggleMobileSearch(force) {
+      const wrap = document.getElementById("mobileSearchWrap");
+      const show = typeof force === "boolean" ? force : wrap.classList.contains("hidden");
+      wrap.classList.toggle("hidden", !show);
+      if (show) document.getElementById("mobileSearchInput")?.focus();
+    }
+
+    function openSizeGuide() {
+      const m = document.getElementById("sizeGuideModal");
+      m.classList.remove("hidden");
+      m.classList.add("flex");
+    }
+
+    function closeSizeGuide() {
+      const m = document.getElementById("sizeGuideModal");
+      m.classList.add("hidden");
+      m.classList.remove("flex");
+    }
+
+    function updateBadges() {
+      const totalQty = state.cart.reduce((sum, item) => sum + item.qty, 0);
+      const cartBadge = document.getElementById("cartBadge");
+      const drawerCount = document.getElementById("cartDrawerCount");
+      if (cartBadge) cartBadge.textContent = totalQty;
+      if (drawerCount) drawerCount.textContent = totalQty;
+
+      const wishBadge = document.getElementById("wishlistBadge");
+      const wishDrawerCount = document.getElementById("wishlistDrawerCount");
+      if (wishBadge) {
+        wishBadge.textContent = state.wishlist.length;
+        wishBadge.classList.toggle("hidden", state.wishlist.length === 0);
+      }
+      if (wishDrawerCount) wishDrawerCount.textContent = state.wishlist.length;
+    }
+
+    function populateStaticMenus() {
+      const deskDrop = document.getElementById("desktopCatDropdown");
+      const mobList = document.getElementById("mobileCatList");
+      const footLinks = document.getElementById("footerCategoryLinks");
+
+      if (deskDrop) {
+        deskDrop.innerHTML = CATEGORIES.map(cat => `
+          <button onclick="navigateTo('shop', { category: '${cat.name.replace(/'/g, "\\'")}' })"
+            class="w-full text-left px-3 py-2 rounded-xl hover:bg-orange-50 hover:text-orange-600 transition text-sm font-medium flex items-center justify-between">
+            <span>${cat.name}</span>
+            <span class="text-xs text-neutral-400">→</span>
+          </button>
+        `).join("");
+      }
+
+      if (mobList) {
+        mobList.innerHTML = CATEGORIES.map(cat => `
+          <button onclick="navigateTo('shop', { category: '${cat.name.replace(/'/g, "\\'")}' }); toggleMobileMenu(false);"
+            class="w-full text-left px-3 py-2 rounded-xl hover:bg-neutral-100 text-sm text-neutral-700 font-medium">
+            ${cat.name}
+          </button>
+        `).join("");
+      }
+
+      if (footLinks) {
+        footLinks.innerHTML = CATEGORIES.map(cat => `
+          <li>
+            <a href="#cat-${cat.slug}" onclick="navigateTo('shop', { category: '${cat.name.replace(/'/g, "\\'")}' }); return false;"
+              class="hover:text-orange-500 transition">${cat.name}</a>
+          </li>
+        `).join("");
+      }
+
+      document.getElementById("yearSpan").textContent = new Date().getFullYear();
+    }
+
+    // ==========================================
+    // 4. LIVE SEARCH
+    // ==========================================
+    function handleSearchInput(query, resultsId) {
+      const box = document.getElementById(resultsId);
+      const q = query.trim().toLowerCase();
+      if (!q) {
+        box.classList.add("hidden");
+        box.innerHTML = "";
+        return;
+      }
+      const matches = PRODUCTS.filter(p =>
+        p.name.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q) ||
+        p.fabric.toLowerCase().includes(q)
+      ).slice(0, 6);
+
+      if (matches.length === 0) {
+        box.innerHTML = `<div class="p-4 text-sm text-neutral-500 text-center">No products found for "<strong>${query}</strong>"</div>`;
+      } else {
+        box.innerHTML = matches.map(p => `
+          <div onclick="openQuickView(${p.id}); document.getElementById('${resultsId}').classList.add('hidden');"
+            class="flex items-center gap-3 p-3 hover:bg-neutral-50 cursor-pointer border-b border-neutral-100 last:border-none">
+            <img src="${p.images[0]}" alt="${p.name}" class="w-12 h-14 object-cover rounded-lg bg-neutral-100 shrink-0" />
+            <div class="min-w-0 flex-1">
+              <p class="text-sm font-semibold text-neutral-900 truncate">${p.name}</p>
+              <p class="text-xs text-neutral-500">${p.category}</p>
+            </div>
+            <span class="text-sm font-bold text-orange-600 shrink-0">${formatBDT(p.price)}</span>
+          </div>
+        `).join("");
+      }
+      box.classList.remove("hidden");
+    }
+
+    function submitSearch(query) {
+      document.getElementById("desktopSearchResults")?.classList.add("hidden");
+      document.getElementById("mobileSearchResults")?.classList.add("hidden");
+      navigateTo("shop", { search: query.trim() });
+    }
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest("#desktopSearchInput") && !e.target.closest("#desktopSearchResults")) {
+        document.getElementById("desktopSearchResults")?.classList.add("hidden");
+      }
+      if (!e.target.closest("#mobileSearchInput") && !e.target.closest("#mobileSearchResults")) {
+        document.getElementById("mobileSearchResults")?.classList.add("hidden");
+      }
+    });
+
+    // ==========================================
+    // 5. CART & WISHLIST ACTIONS
+    // ==========================================
+    function addToCart(productId, size = null, color = null, qty = 1) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+      const chosenSize = size || product.sizes[0] || "L";
+      const chosenColor = color || (product.colors[0]?.name || "Default");
+
+      const existing = state.cart.find(
+        item => item.id === product.id && item.size === chosenSize && item.color === chosenColor
+      );
+
+      if (existing) {
+        existing.qty = Math.min(product.stock, existing.qty + qty);
+      } else {
+        state.cart.push({
+          id: product.id,
+          name: product.name,
+          category: product.category,
+          price: product.price,
+          image: product.images[0],
+          size: chosenSize,
+          color: chosenColor,
+          qty: Math.min(product.stock, qty)
+        });
+      }
+      saveState();
+      showToast(`Added "${product.name}" (${chosenSize}) to bag`);
+      renderCartDrawer();
+    }
+
+    function updateCartQty(index, delta) {
+      const item = state.cart[index];
+      if (!item) return;
+      const product = PRODUCTS.find(p => p.id === item.id);
+      const maxStock = product ? product.stock : 20;
+      const nextQty = item.qty + delta;
+      if (nextQty <= 0) {
+        state.cart.splice(index, 1);
+      } else {
+        item.qty = Math.min(maxStock, nextQty);
+      }
+      saveState();
+      renderCartDrawer();
+      if (state.view === "checkout") renderApp();
+    }
+
+    function removeCartItem(index) {
+      state.cart.splice(index, 1);
+      saveState();
+      renderCartDrawer();
+      if (state.view === "checkout") renderApp();
+    }
+
+    function toggleWishlist(productId) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+      const idx = state.wishlist.indexOf(productId);
+      if (idx > -1) {
+        state.wishlist.splice(idx, 1);
+        showToast(`Removed from wishlist`, "info");
+      } else {
+        state.wishlist.push(productId);
+        showToast(`Saved "${product.name}" to wishlist`);
+      }
+      saveState();
+      renderWishlistDrawer();
+      if (state.view === "home" || state.view === "shop") renderApp();
+    }
+
+    function openCartDrawer() {
+      renderCartDrawer();
+      document.getElementById("cartOverlay").classList.remove("hidden");
+      requestAnimationFrame(() => document.getElementById("cartDrawer").classList.remove("translate-x-full"));
+    }
+
+    function closeCartDrawer() {
+      document.getElementById("cartDrawer").classList.add("translate-x-full");
+      setTimeout(() => document.getElementById("cartOverlay").classList.add("hidden"), 280);
+    }
+
+    function openWishlistDrawer() {
+      renderWishlistDrawer();
+      document.getElementById("wishlistOverlay").classList.remove("hidden");
+      requestAnimationFrame(() => document.getElementById("wishlistDrawer").classList.remove("translate-x-full"));
+    }
+
+    function closeWishlistDrawer() {
+      document.getElementById("wishlistDrawer").classList.add("translate-x-full");
+      setTimeout(() => document.getElementById("wishlistOverlay").classList.add("hidden"), 280);
+    }
+
+    function applyPromoCode(codeInput) {
+      const clean = (codeInput || "").trim().toUpperCase();
+      if (clean === "MENZO15") {
+        state.promoCode = "MENZO15";
+        saveState();
+        showToast("Promo code MENZO15 applied! 15% discount active.");
+      } else if (!clean) {
+        state.promoCode = "";
+        saveState();
+        showToast("Promo code cleared.", "info");
+      } else {
+        showToast("Invalid promo code. Try MENZO15 for 15% off.", "error");
+      }
+      renderCartDrawer();
+      if (state.view === "checkout") renderApp();
+    }
+
+    function getOrderSummary() {
+      const subtotal = state.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const discount = state.promoCode === "MENZO15" ? Math.round(subtotal * 0.15) : 0;
+      const deliveryFee = subtotal > 0 ? 80 : 0;
+      const total = Math.max(0, subtotal - discount + deliveryFee);
+      return { subtotal, discount, deliveryFee, total };
+    }
+
+    function renderCartDrawer() {
+      const body = document.getElementById("cartDrawerBody");
+      const footer = document.getElementById("cartDrawerFooter");
+      if (!body || !footer) return;
+
+      if (state.cart.length === 0) {
+        body.innerHTML = `
+          <div class="text-center py-16 space-y-4">
+            <p class="text-neutral-500 font-medium">Your shopping bag is currently empty.</p>
+            <button onclick="closeCartDrawer(); navigateTo('shop');" class="px-5 py-2.5 rounded-full bg-brand-black text-white text-sm font-semibold hover:bg-orange-600 transition">
+              Explore Collection
+            </button>
+          </div>
+        `;
+        footer.innerHTML = "";
+        return;
+      }
+
+      body.innerHTML = state.cart.map((item, idx) => `
+        <div class="flex gap-3.5 bg-neutral-50 p-3 rounded-2xl border border-neutral-100">
+          <img src="${item.image}" alt="${item.name}" class="w-16 h-20 object-cover rounded-xl bg-neutral-200 shrink-0" />
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-2">
+              <h4 class="text-sm font-bold text-neutral-900 truncate">${item.name}</h4>
+              <button onclick="removeCartItem(${idx})" class="text-neutral-400 hover:text-red-600 text-xs font-bold">✕</button>
+            </div>
+            <p class="text-xs text-neutral-500 mt-0.5">Size: <strong>${item.size}</strong> • Color: ${item.color}</p>
+            <div class="flex items-center justify-between mt-3">
+              <div class="inline-flex items-center border border-neutral-200 bg-white rounded-lg">
+                <button onclick="updateCartQty(${idx}, -1)" class="px-2.5 py-1 text-sm font-bold hover:bg-neutral-100">-</button>
+                <span class="px-2.5 text-xs font-bold">${item.qty}</span>
+                <button onclick="updateCartQty(${idx}, 1)" class="px-2.5 py-1 text-sm font-bold hover:bg-neutral-100">+</button>
+              </div>
+              <span class="text-sm font-extrabold text-neutral-900">${formatBDT(item.price * item.qty)}</span>
+            </div>
+          </div>
+        </div>
+      `).join("");
+
+      const { subtotal, discount, deliveryFee, total } = getOrderSummary();
+
+      footer.innerHTML = `
+        <div class="flex gap-2">
+          <input id="drawerPromoInput" type="text" value="${state.promoCode}" placeholder="Promo code (e.g. MENZO15)"
+            class="flex-1 bg-white border border-neutral-300 rounded-xl px-3 py-2 text-xs uppercase font-semibold outline-none focus:border-orange-500" />
+          <button onclick="applyPromoCode(document.getElementById('drawerPromoInput').value)"
+            class="px-3.5 py-2 rounded-xl bg-neutral-800 hover:bg-brand-black text-white text-xs font-bold transition">
+            Apply
+          </button>
+        </div>
+        <div class="space-y-1.5 text-sm">
+          <div class="flex justify-between text-neutral-600"><span>Subtotal</span><span>${formatBDT(subtotal)}</span></div>
+          ${discount > 0 ? `<div class="flex justify-between text-emerald-600 font-semibold"><span>Promo (MENZO15 -15%)</span><span>-${formatBDT(discount)}</span></div>` : ""}
+          <div class="flex justify-between text-neutral-600"><span>Delivery Charge</span><span>${formatBDT(deliveryFee)}</span></div>
+          <div class="flex justify-between text-base font-extrabold text-neutral-900 pt-2 border-t border-neutral-200">
+            <span>Total</span><span>${formatBDT(total)}</span>
+          </div>
+        </div>
+        <button onclick="closeCartDrawer(); navigateTo('checkout');"
+          class="w-full py-3 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm transition shadow-lg shadow-orange-600/20">
+          Proceed to Cash on Delivery Checkout →
+        </button>
+      `;
+    }
+
+    function renderWishlistDrawer() {
+      const body = document.getElementById("wishlistDrawerBody");
+      if (!body) return;
+
+      const items = PRODUCTS.filter(p => state.wishlist.includes(p.id));
+      if (items.length === 0) {
+        body.innerHTML = `<p class="text-center text-sm text-neutral-500 py-16">No saved items yet. Tap the heart icon on any product.</p>`;
+        return;
+      }
+
+      body.innerHTML = items.map(p => `
+        <div class="flex gap-3.5 bg-neutral-50 p-3 rounded-2xl border border-neutral-100">
+          <img src="${p.images[0]}" alt="${p.name}" class="w-16 h-20 object-cover rounded-xl bg-neutral-200 shrink-0" />
+          <div class="flex-1 min-w-0">
+            <h4 class="text-sm font-bold text-neutral-900 truncate">${p.name}</h4>
+            <p class="text-sm font-extrabold text-orange-600 mt-1">${formatBDT(p.price)}</p>
+            <div class="flex items-center gap-2 mt-2.5">
+              <button onclick="addToCart(${p.id}); closeWishlistDrawer(); openCartDrawer();"
+                class="px-3 py-1.5 rounded-lg bg-brand-black hover:bg-orange-600 text-white text-xs font-semibold transition">
+                Add to Bag
+              </button>
+              <button onclick="toggleWishlist(${p.id})" class="px-2.5 py-1.5 rounded-lg text-xs text-neutral-500 hover:text-red-600">
+                Remove
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // ==========================================
+    // 6. QUICK VIEW MODAL
+    // ==========================================
+    let qvState = { productId: null, size: null, color: null, imageIndex: 0 };
+
+    function openQuickView(productId) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+      qvState = {
+        productId: product.id,
+        size: product.sizes[0] || "L",
+        color: product.colors[0]?.name || "Default",
+        imageIndex: 0
+      };
+      renderQuickView();
+      const modal = document.getElementById("quickViewModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function closeQuickView() {
+      const modal = document.getElementById("quickViewModal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    function renderQuickView() {
+      const product = PRODUCTS.find(p => p.id === qvState.productId);
+      if (!product) return;
+      const discount = getDiscountPercent(product.originalPrice, product.price);
+      const isWished = state.wishlist.includes(product.id);
+
+      document.getElementById("quickViewContent").innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="bg-neutral-100 p-4 flex flex-col justify-between relative">
+            <img src="${product.images[qvState.imageIndex] || product.images[0]}" alt="${product.name}"
+              class="w-full h-80 md:h-96 object-cover rounded-2xl" />
+            ${product.images.length > 1 ? `
+              <div class="flex gap-2 mt-3">
+                ${product.images.map((img, idx) => `
+                  <button onclick="qvState.imageIndex = ${idx}; renderQuickView();"
+                    class="w-14 h-16 rounded-lg overflow-hidden border-2 ${qvState.imageIndex === idx ? 'border-orange-600' : 'border-transparent'}">
+                    <img src="${img}" alt="Thumb ${idx + 1}" class="w-full h-full object-cover" />
+                  </button>
+                `).join("")}
+              </div>
+            ` : ""}
+          </div>
+
+          <div class="p-6 sm:p-8 flex flex-col justify-between space-y-5">
+            <div>
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-orange-600">${product.category}</span>
+                <button onclick="closeQuickView()" class="p-1.5 rounded-full hover:bg-neutral-100 text-neutral-500">✕</button>
+              </div>
+              <h2 class="text-2xl font-extrabold text-neutral-900 mt-1">${product.name}</h2>
+              <div class="flex items-center gap-3 mt-2">
+                <span class="text-2xl font-extrabold text-neutral-900">${formatBDT(product.price)}</span>
+                ${product.originalPrice > product.price ? `<span class="text-sm line-through text-neutral-400">${formatBDT(product.originalPrice)}</span>` : ""}
+                ${discount > 0 ? `<span class="px-2 py-0.5 rounded bg-orange-100 text-orange-700 text-xs font-bold">-${discount}%</span>` : ""}
+              </div>
+              <p class="text-sm text-neutral-600 mt-3 leading-relaxed">${product.description}</p>
+              <p class="text-xs text-neutral-500 mt-2"><strong>Fabric:</strong> ${product.fabric} • <strong>Stock:</strong> ${product.stock} left</p>
+
+              <!-- Size Selector -->
+              <div class="mt-4">
+                <div class="flex items-center justify-between text-xs font-bold mb-2">
+                  <span>Select Size</span>
+                  <button onclick="openSizeGuide()" class="text-orange-600 underline">Size Guide</button>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  ${product.sizes.map(sz => `
+                    <button onclick="qvState.size = '${sz}'; renderQuickView();"
+                      class="px-3.5 py-1.5 rounded-xl text-xs font-bold border transition ${qvState.size === sz ? 'bg-brand-black text-white border-brand-black' : 'bg-white text-neutral-700 border-neutral-300 hover:border-neutral-900'}">
+                      ${sz}
+                    </button>
+                  `).join("")}
+                </div>
+              </div>
+
+              <!-- Color Selector -->
+              <div class="mt-4">
+                <span class="block text-xs font-bold mb-2">Color: <span class="text-neutral-600 font-semibold">${qvState.color}</span></span>
+                <div class="flex flex-wrap gap-2.5">
+                  ${product.colors.map(c => `
+                    <button onclick="qvState.color = '${c.name.replace(/'/g, "\\'")}'; renderQuickView();"
+                      class="w-7 h-7 rounded-full border-2 flex items-center justify-center ${qvState.color === c.name ? 'border-orange-600 scale-110' : 'border-neutral-300'}"
+                      style="background-color: ${c.hex};" title="${c.name}"></button>
+                  `).join("")}
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-3 pt-2">
+              <button onclick="addToCart(product.id, qvState.size, qvState.color, 1); closeQuickView(); openCartDrawer();"
+                class="flex-1 py-3 rounded-xl bg-brand-black hover:bg-orange-600 text-white font-bold text-sm transition">
+                Add to Bag
+              </button>
+              <button onclick="toggleWishlist(product.id); renderQuickView();"
+                class="px-4 py-3 rounded-xl border ${isWished ? 'border-amber-500 bg-amber-50 text-amber-600' : 'border-neutral-300 text-neutral-700 hover:bg-neutral-50'} font-bold text-sm transition">
+                ${isWished ? "♥ Saved" : "♡ Save"}
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ==========================================
+    // 7. PRODUCT CARD & VIEWS
+    // ==========================================
+    function renderProductCard(product) {
+      const discount = getDiscountPercent(product.originalPrice, product.price);
+      const isWished = state.wishlist.includes(product.id);
+
+      return `
+        <article class="product-card bg-white rounded-2xl border border-neutral-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-[4/5] bg-neutral-100 overflow-hidden">
+              <img src="${product.images[0]}" alt="${product.name}" loading="lazy"
+                onclick="openQuickView(${product.id})"
+                class="product-img-main w-full h-full object-cover transition-transform duration-500 cursor-pointer" />
+
+              <div class="absolute top-3 left-3 flex flex-col gap-1.5">
+                ${product.newArrival ? `<span class="px-2.5 py-0.5 rounded-full bg-brand-black text-white text-[10px] font-bold uppercase tracking-wider">New</span>` : ""}
+                ${discount > 0 ? `<span class="px-2.5 py-0.5 rounded-full bg-orange-600 text-white text-[10px] font-bold">-${discount}%</span>` : ""}
+              </div>
+
+              <button onclick="toggleWishlist(${product.id})" aria-label="Wishlist"
+                class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-neutral-800 flex items-center justify-center shadow transition">
+                <span class="${isWished ? 'text-amber-500' : 'text-neutral-600'} text-base">${isWished ? "♥" : "♡"}</span>
+              </button>
+            </div>
+
+            <div class="p-4">
+              <p class="text-[11px] font-bold uppercase tracking-wider text-neutral-400">${product.category}</p>
+              <h3 onclick="openQuickView(${product.id})" class="font-bold text-neutral-900 mt-1 line-clamp-1 cursor-pointer hover:text-orange-600 transition">
+                ${product.name}
+              </h3>
+              <div class="flex items-center justify-between mt-2">
+                <div class="flex items-baseline gap-2">
+                  <span class="font-extrabold text-base text-neutral-900">${formatBDT(product.price)}</span>
+                  ${product.originalPrice > product.price ? `<span class="text-xs line-through text-neutral-400">${formatBDT(product.originalPrice)}</span>` : ""}
+                </div>
+                <span class="text-xs font-semibold text-amber-600">★ ${product.rating}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-4 pb-4 flex gap-2">
+            <button onclick="addToCart(${product.id})"
+              class="flex-1 py-2.5 rounded-xl bg-brand-black hover:bg-orange-600 text-white text-xs font-bold transition">
+              Add to Bag
+            </button>
+            <button onclick="openQuickView(${product.id})"
+              class="px-3 py-2.5 rounded-xl border border-neutral-200 hover:bg-neutral-50 text-xs font-semibold text-neutral-700 transition">
+              Quick View
+            </button>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderHomeView() {
+      const trending = PRODUCTS.filter(p => p.bestSeller).slice(0, 4);
+      const newArrivals = PRODUCTS.filter(p => p.newArrival).slice(0, 4);
+
+      return `
+        <!-- Hero Banner -->
+        <section class="relative bg-brand-black text-white overflow-hidden">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div class="space-y-6 animate-fade-up">
+              <span class="inline-block px-3.5 py-1 rounded-full bg-orange-600/20 border border-orange-500/40 text-orange-400 text-xs font-bold uppercase tracking-widest">
+                MENZO Autumn / Winter Collection
+              </span>
+              <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                Sharp Tailoring. <span class="text-orange-500 italic">Effortless</span> Confidence.
+              </h1>
+              <p class="text-neutral-300 text-base sm:text-lg max-w-xl leading-relaxed">
+                Discover refined shirts, heavyweight tees, tailored trousers, joggers, hoodies, and outerwear crafted for modern men across Bangladesh.
+              </p>
+              <div class="flex flex-wrap gap-3.5 pt-2">
+                <button onclick="navigateTo('shop', { category: 'All' })"
+                  class="px-7 py-3.5 rounded-full bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm transition shadow-lg shadow-orange-600/30">
+                  Shop Collection
+                </button>
+                <button onclick="navigateTo('shop', { filterFlag: 'newArrival' })"
+                  class="px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/20 transition">
+                  New Arrivals
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <img src="https://images.unsplash.com/photo-1603252109612-24fa03d145c8?auto=format&fit=crop&w=800&q=80" alt="MENZO Shirt" class="rounded-3xl h-72 sm:h-80 w-full object-cover shadow-2xl" />
+              <img src="https://images.unsplash.com/photo-1692776100567-31aa5bc1e388?auto=format&fit=crop&w=800&q=80" alt="MENZO Hoodie" class="rounded-3xl h-72 sm:h-80 w-full object-cover shadow-2xl mt-6" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Categories Strip -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14">
+          <div class="flex items-end justify-between mb-6">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-widest text-orange-600">Curated Wardrobes</p>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-neutral-900 mt-1">Shop by Category</h2>
+            </div>
+            <button onclick="navigateTo('shop')" class="text-sm font-bold text-neutral-700 hover:text-orange-600">View All →</button>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            ${CATEGORIES.slice(0, 5).map(cat => `
+              <div onclick="navigateTo('shop', { category: '${cat.name.replace(/'/g, "\\'")}' })"
+                class="group relative rounded-2xl overflow-hidden bg-neutral-900 aspect-[4/5] cursor-pointer shadow-sm hover:shadow-xl transition">
+                <img src="${cat.image}" alt="${cat.name}" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4 text-white">
+                  <h3 class="font-bold text-base">${cat.name}</h3>
+                  <p class="text-[11px] text-neutral-300">${cat.tagline}</p>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        </section>
+
+        <!-- Best Sellers -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-widest text-orange-600">Customer Favorites</p>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-neutral-900 mt-1">Best Sellers</h2>
+            </div>
+            <button onclick="navigateTo('shop', { sort: 'popular' })" class="text-sm font-bold text-neutral-700 hover:text-orange-600">Shop All →</button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            ${trending.map(renderProductCard).join("")}
+          </div>
+        </section>
+
+        <!-- Promo Banner -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14">
+          <div class="rounded-3xl bg-gradient-to-r from-neutral-900 via-neutral-800 to-orange-950 text-white p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-2">
+              <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Limited Time Offer</span>
+              <h3 class="text-2xl sm:text-3xl font-extrabold">Use Code <span class="text-orange-400 font-mono">MENZO15</span> for 15% Off</h3>
+              <p class="text-sm text-neutral-300">Applicable on your order at bag or checkout with Cash on Delivery nationwide.</p>
+            </div>
+            <button onclick="applyPromoCode('MENZO15'); openCartDrawer();"
+              class="px-6 py-3.5 rounded-full bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm shrink-0 transition">
+              Apply MENZO15 Now
+            </button>
+          </div>
+        </section>
+
+        <!-- New Arrivals -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-widest text-orange-600">Fresh Drops</p>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-neutral-900 mt-1">New Arrivals</h2>
+            </div>
+            <button onclick="navigateTo('shop', { filterFlag: 'newArrival' })" class="text-sm font-bold text-neutral-700 hover:text-orange-600">See More →</button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            ${newArrivals.map(renderProductCard).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderShopView() {
+      const f = state.filters;
+      let filtered = PRODUCTS.filter(p => {
+        if (f.category && f.category !== "All" && p.category !== f.category) return false;
+        if (p.price > f.maxPrice) return false;
+        if (f.size && f.size !== "All" && !p.sizes.includes(f.size)) return false;
+        if (f.color && f.color !== "All" && !p.colors.some(c => c.name === f.color)) return false;
+        if (f.filterFlag === "newArrival" && !p.newArrival) return false;
+        if (f.search) {
+          const q = f.search.toLowerCase();
+          const match = p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.fabric.toLowerCase().includes(q);
+          if (!match) return false;
+        }
+        return true;
+      });
+
+      if (f.sort === "price-asc") filtered.sort((a, b) => a.price - b.price);
+      else if (f.sort === "price-desc") filtered.sort((a, b) => b.price - a.price);
+      else if (f.sort === "popular") filtered.sort((a, b) => b.reviews - a.reviews);
+
+      const uniqueColors = [...new Set(PRODUCTS.flatMap(p => p.colors.map(c => c.name)))];
+
+      return `
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <div>
+              <h1 class="text-3xl font-extrabold text-neutral-900">
+                ${f.filterFlag === "newArrival" ? "New Arrivals" : f.category === "All" ? "All Menswear" : f.category}
+              </h1>
+              <p class="text-sm text-neutral-500 mt-1">Showing ${filtered.length} product(s)${f.search ? ` for "${f.search}"` : ""}</p>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <button onclick="openSizeGuide()" class="px-4 py-2 rounded-xl border border-neutral-300 bg-white text-xs font-bold hover:bg-neutral-50">
+                Size Guide
+              </button>
+              <select onchange="state.filters.sort = this.value; renderApp();"
+                class="bg-white border border-neutral-300 rounded-xl px-3.5 py-2 text-xs font-bold outline-none focus:border-orange-500">
+                <option value="featured" ${f.sort === "featured" ? "selected" : ""}>Sort: Featured</option>
+                <option value="popular" ${f.sort === "popular" ? "selected" : ""}>Most Popular</option>
+                <option value="price-asc" ${f.sort === "price-asc" ? "selected" : ""}>Price: Low to High</option>
+                <option value="price-desc" ${f.sort === "price-desc" ? "selected" : ""}>Price: High to Low</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Filter Sidebar -->
+            <aside class="bg-white p-5 rounded-2xl border border-neutral-200/80 h-fit space-y-6">
+              <div>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-2.5">Category</h3>
+                <div class="space-y-1">
+                  <button onclick="state.filters.category = 'All'; state.filters.filterFlag = null; renderApp();"
+                    class="w-full text-left px-3 py-1.5 rounded-lg text-sm font-semibold ${f.category === 'All' && !f.filterFlag ? 'bg-orange-600 text-white' : 'hover:bg-neutral-100 text-neutral-700'}">
+                    All Categories
+                  </button>
+                  ${CATEGORIES.map(c => `
+                    <button onclick="state.filters.category = '${c.name.replace(/'/g, "\\'")}'; state.filters.filterFlag = null; renderApp();"
+                      class="w-full text-left px-3 py-1.5 rounded-lg text-sm font-medium ${f.category === c.name ? 'bg-orange-600 text-white font-semibold' : 'hover:bg-neutral-100 text-neutral-700'}">
+                      ${c.name}
+                    </button>
+                  `).join("")}
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-bold mb-2">
+                  <span>Max Price</span>
+                  <span class="text-orange-600">${formatBDT(f.maxPrice)}</span>
+                </div>
+                <input type="range" min="700" max="5000" step="100" value="${f.maxPrice}"
+                  oninput="state.filters.maxPrice = Number(this.value); renderApp();"
+                  class="w-full accent-orange-600" />
+              </div>
+
+              <div>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-2.5">Size</h3>
+                <div class="flex flex-wrap gap-1.5">
+                  ${["All", ...ALL_SIZES].map(sz => `
+                    <button onclick="state.filters.size = '${sz}'; renderApp();"
+                      class="px-3 py-1 rounded-lg text-xs font-bold border ${f.size === sz ? 'bg-brand-black text-white border-brand-black' : 'bg-white text-neutral-700 border-neutral-200'}">
+                      ${sz}
+                    </button>
+                  `).join("")}
+                </div>
+              </div>
+
+              <div>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-2.5">Color</h3>
+                <select onchange="state.filters.color = this.value; renderApp();"
+                  class="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-3 py-2 text-xs font-semibold outline-none">
+                  <option value="All">All Colors</option>
+                  ${uniqueColors.map(col => `<option value="${col}" ${f.color === col ? "selected" : ""}>${col}</option>`).join("")}
+                </select>
+              </div>
+
+              <button onclick="navigateTo('shop', { category: 'All' });"
+                class="w-full py-2.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-xs font-bold text-neutral-800 transition">
+                Reset All Filters
+              </button>
+            </aside>
+
+            <!-- Product Grid -->
+            <div class="lg:col-span-3">
+              ${filtered.length === 0 ? `
+                <div class="bg-white rounded-2xl p-12 text-center border border-neutral-200 space-y-3">
+                  <p class="font-bold text-lg text-neutral-800">No matching items found</p>
+                  <p class="text-sm text-neutral-500">Try adjusting your price range, size, or search keyword.</p>
+                  <button onclick="navigateTo('shop', { category: 'All' });" class="px-5 py-2.5 rounded-xl bg-orange-600 text-white text-xs font-bold">
+                    Show All Products
+                  </button>
+                </div>
+              ` : `
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                  ${filtered.map(renderProductCard).join("")}
+                </div>
+              `}
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderCheckoutView() {
+      if (state.cart.length === 0) {
+        return `
+          <section class="max-w-2xl mx-auto px-4 py-16 text-center space-y-4">
+            <h1 class="text-2xl font-extrabold">Your Bag is Empty</h1>
+            <p class="text-sm text-neutral-500">Add items to your bag before proceeding to Cash on Delivery checkout.</p>
+            <button onclick="navigateTo('shop')" class="px-6 py-3 rounded-xl bg-brand-black text-white text-sm font-bold">
+              Browse Products
+            </button>
+          </section>
+        `;
+      }
+
+      const { subtotal, discount, deliveryFee, total } = getOrderSummary();
+
+      return `
+        <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <h1 class="text-3xl font-extrabold text-neutral-900 mb-8">Cash on Delivery Checkout</h1>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <form id="codCheckoutForm" onsubmit="placeCodOrder(event)" class="lg:col-span-2 bg-white p-6 sm:p-8 rounded-3xl border border-neutral-200/80 space-y-5">
+              <h2 class="font-bold text-lg">Delivery Information</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-neutral-700 mb-1.5">Full Name *</label>
+                  <input type="text" required placeholder="e.g. Tanvir Hasan" class="w-full border border-neutral-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-orange-500" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-neutral-700 mb-1.5">Mobile Number *</label>
+                  <input type="tel" required placeholder="017XXXXXXXX" class="w-full border border-neutral-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-orange-500" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-neutral-700 mb-1.5">City / District *</label>
+                <input type="text" required placeholder="e.g. Dhaka, Chattogram, Sylhet" class="w-full border border-neutral-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-orange-500" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-neutral-700 mb-1.5">Full Delivery Address *</label>
+                <textarea rows="3" required placeholder="House, road, block, area details..." class="w-full border border-neutral-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-orange-500"></textarea>
+              </div>
+              <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-900 font-medium">
+                Payment Method: <strong>Cash on Delivery (COD)</strong> — Pay in cash when your parcel arrives.
+              </div>
+              <button type="submit" class="w-full py-3.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm transition shadow-lg shadow-orange-600/20">
+                Confirm Cash on Delivery Order (${formatBDT(total)})
+              </button>
+            </form>
+
+            <div class="bg-white p-6 rounded-3xl border border-neutral-200/80 h-fit space-y-4">
+              <h2 class="font-bold text-lg">Order Summary</h2>
+              <div class="space-y-3 max-h-64 overflow-y-auto">
+                ${state.cart.map(item => `
+                  <div class="flex justify-between text-sm">
+                    <span class="text-neutral-700 truncate pr-2">${item.name} (${item.size}) × ${item.qty}</span>
+                    <span class="font-bold shrink-0">${formatBDT(item.price * item.qty)}</span>
+                  </div>
+                `).join("")}
+              </div>
+              <div class="border-t border-neutral-200 pt-3 space-y-1.5 text-sm">
+                <div class="flex justify-between text-neutral-600"><span>Subtotal</span><span>${formatBDT(subtotal)}</span></div>
+                ${discount > 0 ? `<div class="flex justify-between text-emerald-600 font-semibold"><span>Discount (MENZO15)</span><span>-${formatBDT(discount)}</span></div>` : ""}
+                <div class="flex justify-between text-neutral-600"><span>Delivery</span><span>${formatBDT(deliveryFee)}</span></div>
+                <div class="flex justify-between text-base font-extrabold pt-2 border-t border-neutral-200"><span>Total</span><span>${formatBDT(total)}</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function placeCodOrder(e) {
+      e.preventDefault();
+      const orderId = "MNZ-" + Math.floor(100000 + Math.random() * 900000);
+      state.cart = [];
+      state.promoCode = "";
+      saveState();
+      document.getElementById("appRoot").innerHTML = `
+        <section class="max-w-xl mx-auto px-4 py-16 text-center bg-white my-10 rounded-3xl border border-neutral-200 shadow-sm space-y-4 animate-fade-up">
+          <div class="w-14 h-14 mx-auto rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl font-bold">✓</div>
+          <h1 class="text-2xl font-extrabold text-neutral-900">Order Placed Successfully!</h1>
+          <p class="text-sm text-neutral-600">Order ID: <strong class="font-mono text-neutral-900">${orderId}</strong>. Our team will confirm your Cash on Delivery shipment shortly.</p>
+          <button onclick="navigateTo('home')" class="px-6 py-3 rounded-xl bg-brand-black hover:bg-orange-600 text-white text-sm font-bold transition">
+            Back to Home
+          </button>
+        </section>
+      `;
+      showToast(`Order ${orderId} confirmed!`);
+    }
+
+    function renderAboutView() {
+      return `
+        <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-6">
+          <div class="bg-white p-8 rounded-3xl border border-neutral-200/80 space-y-4">
+            <span class="text-xs font-bold uppercase tracking-widest text-orange-600">About MENZO</span>
+            <h1 class="text-3xl font-extrabold text-neutral-900">Modern Menswear Built for Everyday Confidence</h1>
+            <p class="text-neutral-600 leading-relaxed">
+              MENZO is a menswear brand focused on clean silhouettes, dependable stitching, and breathable fabrics suited for Bangladesh's climate and lifestyle—from crisp shirts and tailored trousers to heavyweight tees, joggers, hoodies, and outerwear.
+            </p>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderContactView() {
+      return `
+        <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div class="bg-white p-8 rounded-3xl border border-neutral-200/80 space-y-5">
+            <h1 class="text-3xl font-extrabold text-neutral-900">Contact MENZO</h1>
+            <p class="text-sm text-neutral-600">Flagship Store: Road 11, Banani, Dhaka 1213 • Phone: +880 1711-000999 • Email: care@menzo.com.bd</p>
+            <form onsubmit="event.preventDefault(); showToast('Message sent! Our support team will reply soon.'); this.reset();" class="space-y-4">
+              <input type="text" required placeholder="Your Name" class="w-full border border-neutral-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-orange-500" />
+              <input type="email" required placeholder="Your Email" class="w-full border border-neutral-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-orange-500" />
+              <textarea rows="4" required placeholder="How can we help you?" class="w-full border border-neutral-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-orange-500"></textarea>
+              <button type="submit" class="px-6 py-3 rounded-xl bg-brand-black hover:bg-orange-600 text-white text-sm font-bold transition">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderApp() {
+      const root = document.getElementById("appRoot");
+      if (state.view === "shop") root.innerHTML = renderShopView();
+      else if (state.view === "checkout") root.innerHTML = renderCheckoutView();
+      else if (state.view === "about") root.innerHTML = renderAboutView();
+      else if (state.view === "contact") root.innerHTML = renderContactView();
+      else root.innerHTML = renderHomeView();
+    }
+
+    // ==========================================
+    // 8. INITIALIZATION
+    // ==========================================
+    document.addEventListener("DOMContentLoaded", () => {
+      populateStaticMenus();
+      updateBadges();
+      renderApp();
+      renderCartDrawer();
+      renderWishlistDrawer();
+    });
+  </script>
+</body>
+</html>
